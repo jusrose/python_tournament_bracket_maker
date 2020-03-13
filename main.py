@@ -1,11 +1,11 @@
+#import reqiured libs
 import random
-
-def init():
+# func to get user input on how many players/ teams and their names
+def get_users():
     n = input("how many players>>> ")
     try:
         n = int(n)
     except ValueError:
-        print("not valid input")
         n = init()
     pl = []
     for i in range(n+1):
@@ -14,12 +14,14 @@ def init():
         pl.append(p)
     return pl
 
+#prints out the bracke in human readable form
 def print_brackt(b):
     count = 1
     for i in b:
         print("for round one match {}: {}.".format(count, i))
         count = count+1
 
+#generates the bracket
 def gen_bracket(isOdd, p):
     random.shuffle(p)
     print(p)
@@ -34,6 +36,7 @@ def gen_bracket(isOdd, p):
             b.append(temp)
     return b
 
+#tests if value is odd or even
 def test_isOdd(n):
     test = n % 2
     if not test == 0:
@@ -41,12 +44,13 @@ def test_isOdd(n):
     else:
         return False
 
+#main function
 def main():
-    pl = init()
+    pl = get_users()
     l = len(pl)
-    bTest = test_isOdd(l)
-    b = gen_bracket(bTest, pl)
+    isOdd = test_isOdd(l)
+    b = gen_bracket(isOdd, pl)
     print_brackt(b)
-    
+#call main func if ran as main
 if __name__ == "__main__":
     main()
