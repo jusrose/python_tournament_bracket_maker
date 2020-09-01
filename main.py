@@ -23,9 +23,18 @@ def print_brackt(b):
         print("for match {}: {}.".format(count, i))
         count = count+1
 
+def randomize(l):
+    rc = []
+    while not len(rc) == len(l):
+        c = l[random.randrange(len(l))]
+        if c not in rc:
+            rc.append(c)
+        if len(rc) == len(l):
+            return rc
+
 #generates the bracket
 def gen_bracket(isOdd, p):
-    random.shuffle(p)
+    p = randomize(p)
     print(p)
     if isOdd:
         p.append("None")
@@ -49,6 +58,7 @@ def test_isOdd(n):
 #main function
 def main():
     pl = get_users()
+    print(pl)
     l = len(pl)
     isOdd = test_isOdd(l)
     b = gen_bracket(isOdd, pl)
